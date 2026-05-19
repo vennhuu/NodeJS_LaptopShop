@@ -3,6 +3,7 @@
 import express from "express";
 import "dotenv/config";
 import webRoute from "./routes/web";
+import getConnection from "./config/db";
 
 const app = express();
 
@@ -25,6 +26,4 @@ app.use(express.static("public"));
 // config route
 app.listen(8080, () => {
   console.log(`My app is running on port ${port}`);
-  console.log("ENV port: ", process.env.PORT);
-  console.log(__dirname);
 });
