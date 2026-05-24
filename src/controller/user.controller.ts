@@ -10,7 +10,6 @@ import {
 const getHomePage = async (req: Request, res: Response) => {
   // get users
   const users = await getAllUsers();
-  console.log("Check Users", users);
   return res.render("home", {
     users: users,
   });
@@ -40,7 +39,6 @@ const getViewUser = async (req: Request, res: Response) => {
   const id = req.params.id as string;
   const user = await handleViewUser(id);
 
-  console.log(user);
   return res.render("view-user.ejs", {
     user: user,
   });
