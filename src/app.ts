@@ -4,6 +4,7 @@ import express from "express";
 import "dotenv/config";
 import webRoute from "./routes/web";
 import getConnection from "./config/db";
+import initDatabase from "config/seed";
 
 const app = express();
 
@@ -22,6 +23,9 @@ webRoute(app);
 
 // config static file: imgs/css/js
 app.use(express.static("public"));
+
+// seeding data
+initDatabase();
 
 // config route
 app.listen(8080, () => {

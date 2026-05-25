@@ -13,12 +13,12 @@
     <h3 style="padding: 10px 0">View detail User ID = <%= user.id %></h3>
         <div class="mb-3">
             <label>Name</label>
-            <input name="fullName" type="text" class="form-control" placeholder="<%= user.name %>" disabled>
+            <input name="fullName" type="text" class="form-control" placeholder="<%= user.fullName %>" disabled>
         </div>
 
         <div class="mb-3">
             <label>Email</label>
-            <input name="email" type="email" class="form-control" placeholder="<%= user.email %>" disabled>
+            <input name="email" type="email" class="form-control" placeholder="<%= user.username %>" disabled>
         </div>
 
         <div class="mb-3">
@@ -32,7 +32,7 @@
         </div>
 
         <div class="mb-3">
-            <a href="/"><button class="btn btn-primary">Back</button></a>
+            <a href="/admin/user"><button class="btn btn-primary">Back</button></a>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
