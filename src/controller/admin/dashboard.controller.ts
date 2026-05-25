@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import {
+  getAllRoles,
   getAllUsers,
   handleCreateUser,
   handleDeleteUser,
@@ -18,8 +19,11 @@ const getUsersPage = async (req: Request, res: Response) => {
   });
 };
 
-const getCreateUserPage = (req: Request, res: Response) => {
-  return res.render("admin/user/create-user");
+const getCreateUserPage = async (req: Request, res: Response) => {
+  const roles = await getAllRoles();
+  return res.render("admin/user/create-user", {
+    roles: roles,
+  });
 };
 
 const postCreateUser = async (req: Request, res: Response) => {
@@ -51,7 +55,6 @@ const getUpdateUser = async (req: Request, res: Response) => {
   const id = req.params.id as string;
   const user = await handleViewUser(id);
 
-  console.log(user);
   return res.render("admin/user/update-user.ejs", {
     user: user,
   });
