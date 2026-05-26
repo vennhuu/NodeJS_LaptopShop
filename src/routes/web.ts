@@ -12,6 +12,7 @@ import {
   postUpdateUser,
 } from "controller/admin/dashboard.controller";
 import { getHomePage } from "controller/user.controller";
+import fileUploadMiddleware from "src/middleware/multer";
 
 const router = express.Router();
 
@@ -26,7 +27,11 @@ const webRoute = (app: Express) => {
 
   // admin -user
   router.get("/create-user", getCreateUserPage);
-  router.post("/handle-create-user", postCreateUser);
+  router.post(
+    "/handle-create-user",
+    fileUploadMiddleware("avatar"),
+    postCreateUser,
+  );
   router.post("/handle-delete-user/:id", postDeleteUser);
   router.get("/handle-view-user/:id", getViewUser);
   router.get("/handle-update-user/:id", getUpdateUser);
