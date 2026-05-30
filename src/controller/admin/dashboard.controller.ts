@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import { getAllProduct } from "service/product.service";
 import {
   getAllRoles,
   getAllUsers,
@@ -82,7 +83,10 @@ const getOrdersPage = async (req: Request, res: Response) => {
 };
 
 const getProductsPage = async (req: Request, res: Response) => {
-  return res.render("admin/product/product");
+  const product = await getAllProduct();
+  return res.render("admin/product/product", {
+    product: product,
+  });
 };
 
 export {
