@@ -12,7 +12,7 @@
     <div style="width:600px ; margin:auto">
     <h3 style="padding: 10px 0">View detail User ID = <%= user.id %></h3>
         <div class="mb-3">
-            <label>Name</label>
+            <label>Full Name</label>
             <input name="fullName" type="text" class="form-control" placeholder="<%= user.fullName %>" disabled>
         </div>
 
@@ -20,6 +20,32 @@
             <label>Email</label>
             <input name="email" type="email" class="form-control" placeholder="<%= user.username %>" disabled>
         </div>
+
+        <div class="row">
+            <div class="mb-3 col-6">
+                <label class="form-label">Phone Nunber</label>
+                <input type="text" class="form-control" name="phone" placeholder="<%= user.phone %>" disabled>
+            </div>
+            <!-- role -->
+            <div class="mb-3 col-6">
+                <label class="form-label">Role</label>
+                <input 
+                    type="text" 
+                    class="form-control" 
+                    value="<%= roles.find(role => role.id === user.roleId)?.name || '' %>" 
+                    disabled
+                >
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label for="formFile" class="form-label">Avatar</label>
+        </div>
+        <% if (user.avatar) { %>
+            <img style="max-height: 250px; max-width: 500px; display: block;" alt="avatar Preview" id="avatarPreview" src="/images/<%= user.avatar %>"/>
+        <% } else { %>
+            <img style="max-height: 250px; max-width: 500px; display: none;" alt="avatar Preview" id="avatarPreview" />
+        <% } %>
 
         <div class="mb-3">
             <label>Password</label>

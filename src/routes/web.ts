@@ -35,7 +35,11 @@ const webRoute = (app: Express) => {
   router.post("/handle-delete-user/:id", postDeleteUser);
   router.get("/handle-view-user/:id", getViewUser);
   router.get("/handle-update-user/:id", getUpdateUser);
-  router.post("/handle-update-user", postUpdateUser);
+  router.post(
+    "/handle-update-user",
+    fileUploadMiddleware("avatar"),
+    postUpdateUser,
+  );
 
   app.use("/", router);
 };

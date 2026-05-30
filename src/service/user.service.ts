@@ -16,6 +16,7 @@ const handleCreateUser = async (
   address: string,
   phone: string,
   avatar: string,
+  role: string,
 ) => {
   const defaultPassword = await hashPassword("123456");
   // insert into database
@@ -28,6 +29,7 @@ const handleCreateUser = async (
       accountType: ACCOUNT_TYPE.SYSTEM,
       avatar: avatar,
       phone: phone,
+      roleId: +role,
     },
   });
   return newUser;
@@ -52,7 +54,10 @@ const updateUserById = async (
   id: string,
   fullName: string,
   email: string,
+  phone: string,
   address: string,
+  avatar: string,
+  role: string,
 ) => {
   const updateUser = await prisma.user.update({
     where: { id: +id },
@@ -60,8 +65,10 @@ const updateUserById = async (
       fullName: fullName,
       username: email,
       address: address,
-      password: "",
-      accountType: "",
+      accountType: ACCOUNT_TYPE.SYSTEM,
+      ...(avatar !== undefined && { avatar: avatar }),
+      phone: phone,
+      roleId: +role,
     },
   });
   return updateUser;
