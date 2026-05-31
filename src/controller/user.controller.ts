@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import { getProduct } from "service/client/item.service";
 import {
   getAllUsers,
   handleCreateUser,
@@ -8,9 +9,11 @@ import {
 } from "service/user.service";
 
 const getHomePage = async (req: Request, res: Response) => {
-  // get users
-  const users = await getAllUsers();
-  return res.render("client/home/show.ejs");
+  // get products
+  const products = await getProduct();
+  return res.render("client/home/show.ejs", {
+    products: products,
+  });
 };
 
 export { getHomePage };
