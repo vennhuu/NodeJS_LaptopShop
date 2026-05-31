@@ -12,11 +12,11 @@ const getAllProduct = async () => {
 
 const createNewProduct = async (
   name: string,
-  price: string,
+  price: number,
   image: string,
   detailDesc: string,
   shortDesc: string,
-  quantity: string,
+  quantity: number,
   factory: string,
   target: string,
 ) => {

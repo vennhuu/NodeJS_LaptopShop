@@ -5,6 +5,7 @@ import "dotenv/config";
 import webRoute from "./routes/web";
 import getConnection from "./config/db";
 import initDatabase from "config/seed";
+import { z } from "zod";
 
 const app = express();
 

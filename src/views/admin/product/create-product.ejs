@@ -38,31 +38,36 @@
                         <div class="row">
                             <div class="col-6 mx-auto">
                                 <div>
+                                    <% errors.forEach( function (error) { %>
+                                        <div class="alert alert-danger mb-3">
+                                            <%= error %>
+                                        </div>
+                                    <% }) %>
                                     <h3 style="padding: 10px 0">Create a new product</h3>
                                     <form action="/handle-create-product" method="post" enctype="multipart/form-data">
                                         <div class="mb-3">
                                             <label>Name</label>
-                                            <input name="name" type="text" class="form-control" placeholder="Enter product's name">
+                                            <input name="name" type="text" class="form-control" placeholder="Enter product's name" value="<%= oldData.name %>">
                                         </div>
 
                                         <div class="mb-3">
                                             <label>Price</label>
-                                            <input name="price" type="number" class="form-control" placeholder="Enter Price">
+                                            <input name="price" type="number" class="form-control" placeholder="Enter Price" value="<%= oldData.price %>">
                                         </div>
 
                                         <div class="mb-3">
                                             <label>Detail Description</label>
-                                            <textarea name="detailDesc" type="text" class="form-control" placeholder="Enter your address" row="3"></textarea>
+                                            <textarea name="detailDesc" type="text" class="form-control" placeholder="Enter your address" row="3"><%= oldData.detailDesc %></textarea>
                                         </div>
 
                                         <div class="row">
                                             <div class="mb-3 col-6">
                                                 <label class="form-label">Short Description</label>
-                                                <input type="text" class="form-control" name="shortDesc">
+                                                <input type="text" class="form-control" name="shortDesc" value="<%= oldData.shortDesc %>">
                                             </div>
                                             <div class="mb-3 col-6">
                                                 <label class="form-label">Quantity</label>
-                                                <input type="number" class="form-control" name="quantity">
+                                                <input type="number" class="form-control" name="quantity" value="<%= oldData.quantity %>">
                                             </div>
                                         </div>
 
