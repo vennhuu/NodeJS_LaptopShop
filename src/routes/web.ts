@@ -42,21 +42,21 @@ const webRoute = (app: Express) => {
   router.get("/product/:id", getDetailProductPage);
 
   // admin route
-  router.get("/admin", isAdmin, getDashboardPage);
-  router.get("/admin/user", isAdmin, getUsersPage);
-  router.get("/admin/order", isAdmin, getOrdersPage);
-  router.get("/admin/product", isAdmin, getProductsPage);
+  router.get("/admin", getDashboardPage);
+  router.get("/admin/user", getUsersPage);
+  router.get("/admin/order", getOrdersPage);
+  router.get("/admin/product", getProductsPage);
 
   // admin -user
-  router.get("/create-user", isAdmin, getCreateUserPage);
+  router.get("/create-user", getCreateUserPage);
   router.post(
     "/handle-create-user",
     fileUploadMiddleware("avatar"),
     postCreateUser,
   );
   router.post("/handle-delete-user/:id", postDeleteUser);
-  router.get("/handle-view-user/:id", isAdmin, getViewUser);
-  router.get("/handle-update-user/:id", isAdmin, getUpdateUser);
+  router.get("/handle-view-user/:id", getViewUser);
+  router.get("/handle-update-user/:id", getUpdateUser);
   router.post(
     "/handle-update-user",
     fileUploadMiddleware("avatar"),
@@ -64,7 +64,7 @@ const webRoute = (app: Express) => {
   );
 
   // admin - products
-  router.get("/create-product", isAdmin, getCreateProduct);
+  router.get("/create-product", getCreateProduct);
 
   router.post(
     "/handle-create-product",
@@ -72,8 +72,8 @@ const webRoute = (app: Express) => {
     postCreateProduct,
   );
   router.post("/handle-delete-product/:id", postDeleteProduct);
-  router.get("/handle-view-product/:id", isAdmin, getViewProduct);
-  router.get("/handle-update-product/:id", isAdmin, getUpdateProduct);
+  router.get("/handle-view-product/:id", getViewProduct);
+  router.get("/handle-update-product/:id", getUpdateProduct);
   router.post(
     "/handle-update-product",
     fileUploadMiddleware("avatar"),
@@ -82,7 +82,7 @@ const webRoute = (app: Express) => {
 
   // auth
   router.get("/success-redirect", getSuccessRedirectPage);
-  router.get("/login", isLogin, getLoginPage);
+  router.get("/login", getLoginPage);
   router.get("/register", getRegisterPage);
   router.post("/register", postRegisterPage);
   router.post(
@@ -95,7 +95,7 @@ const webRoute = (app: Express) => {
   );
   router.post("/logout", postLogout);
 
-  app.use("/", router);
+  app.use("/", isAdmin, router);
 };
 
 export default webRoute;

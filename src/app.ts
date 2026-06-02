@@ -1,3 +1,4 @@
+/// <reference path=./types/index.d.ts>
 import express from "express";
 import "dotenv/config";
 import webRoute from "./routes/web";
@@ -45,6 +46,9 @@ app.use(passport.authenticate("session"));
 
 configPassportLocal();
 
+// config static file: imgs/css/js (phải đặt TRƯỚC webRoute để tránh bị auth middleware chặn)
+app.use(express.static("public"));
+
 // config global
 app.use((req, res, next) => {
   res.locals.user = req.user || null; // pass user obj to all view
@@ -53,15 +57,13 @@ app.use((req, res, next) => {
 //config routes
 webRoute(app);
 
-// config static file: imgs/css/js
-app.use(express.static("public"));
-
 // seeding data
 initDatabase();
 
 // handle 404 not found
 app.use((req, res) => {
-  res.send("404 NOT FOUND");
+  // res.send("404 NOT FOUND");
+  res.render("status/404.ejs");
 });
 // config route
 app.listen(8080, () => {

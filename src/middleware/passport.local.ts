@@ -36,7 +36,7 @@ const configPassportLocal = () => {
           message: "Username/password khong ton tai",
         });
       }
-      return callback(null, user);
+      return callback(null, user as any);
     }),
   );
 
