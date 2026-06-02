@@ -1,6 +1,7 @@
 import { prisma } from "config/client";
 import bcrypt from "bcrypt";
 import { ACCOUNT_TYPE } from "config/constant";
+import { comparePassword, hashPassword } from "service/user.service";
 
 const isEmailExist = async (email: string) => {
   const user = await prisma.user.findUnique({ where: { username: email } });
@@ -9,12 +10,6 @@ const isEmailExist = async (email: string) => {
     return true;
   }
   return false;
-};
-
-const saltRounds = 10;
-
-const hashPassword = async (plaintText: string) => {
-  return await bcrypt.hash(plaintText, saltRounds);
 };
 
 const RegisterNewUser = async (

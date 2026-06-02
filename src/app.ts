@@ -6,6 +6,8 @@ import webRoute from "./routes/web";
 import getConnection from "./config/db";
 import initDatabase from "config/seed";
 import { z } from "zod";
+import passport from "passport";
+import configPassportLocal from "./middleware/passport.local";
 
 const app = express();
 
@@ -19,6 +21,10 @@ app.set("views", __dirname + "/views");
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// config passport
+app.use(passport.initialize());
+configPassportLocal();
+
 //config routes
 webRoute(app);
 
@@ -28,6 +34,10 @@ app.use(express.static("public"));
 // seeding data
 initDatabase();
 
+// handle 404 not found
+app.use((req, res) => {
+  res.send("404 NOT FOUND");
+});
 // config route
 app.listen(8080, () => {
   console.log(`My app is running on port ${port}`);

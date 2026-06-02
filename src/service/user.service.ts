@@ -10,6 +10,10 @@ const hashPassword = async (plaintText: string) => {
   return await bcrypt.hash(plaintText, saltRounds);
 };
 
+const comparePassword = async (plaintText: string, hashPassword: string) => {
+  return await bcrypt.compare(plaintText, hashPassword);
+};
+
 const handleCreateUser = async (
   fullName: string,
   email: string,
@@ -87,4 +91,5 @@ export {
   updateUserById,
   getAllRoles,
   hashPassword,
+  comparePassword,
 };
