@@ -25,6 +25,7 @@ import {
 import {
   getLoginPage,
   getSuccessRedirectPage,
+  postLogout,
 } from "controller/auth/login.controller";
 import {
   getRegisterPage,
@@ -92,6 +93,7 @@ const webRoute = (app: Express) => {
       failureMessage: true,
     }),
   );
+  router.post("/logout", postLogout);
 
   app.use("/", router);
 };

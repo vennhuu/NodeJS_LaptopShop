@@ -4,6 +4,7 @@ const isLogin = (req: Request, res: Response, next: NextFunction) => {
   const isAuthenticated = req.isAuthenticated();
   if (isAuthenticated) {
     res.redirect("/");
+    return;
   } else {
     next();
   }
@@ -13,7 +14,7 @@ const isAdmin = (req: Request, res: Response, next: NextFunction) => {
   const user = req.user as any;
 
   if (user?.role?.name === "ADMIN") {
-    res.redirect("/admin");
+    next();
   } else {
     res.redirect("/");
   }

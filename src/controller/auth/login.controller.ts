@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 
 const getLoginPage = async (req: Request, res: Response) => {
   const { session } = req as any;
@@ -18,4 +18,13 @@ const getSuccessRedirectPage = async (req: Request, res: Response) => {
   }
 };
 
-export { getLoginPage, getSuccessRedirectPage };
+const postLogout = async (req: Request, res: Response, next: NextFunction) => {
+  req.logout((err: any) => {
+    if (err) {
+      return next(err);
+    }
+    res.redirect("/");
+  });
+};
+
+export { getLoginPage, getSuccessRedirectPage, postLogout };
