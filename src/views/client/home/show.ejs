@@ -79,7 +79,7 @@
                                                 </div>
                                                 <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">Laptop</div>
                                                 <div class="p-4 border border-secondary border-top-0 rounded-bottom">
-                                                    <h4 style="font-family: Arial, sans-serif; font-size: 20px; color: #333; font-weight: bold;"><%= product.name %></h4>
+                                                    <h4 style="font-family: Arial, sans-serif; font-size: 20px; color: #333; font-weight: bold;"><a href="/product/<%= product.id %>"><%= product.name %></a></h4>
                                                     <p><%= product.shortDesc %></p>
                                                     <div class="d-flex justify-content-between flex-lg-wrap">
                                                         <p class="text-dark fs-5 fw-bold mb-0"><%= new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(product.price) %></p>
